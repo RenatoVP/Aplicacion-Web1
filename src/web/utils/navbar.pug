@@ -1,0 +1,49 @@
+//-
+    Crea un nuevo template de menu de navegacion, para realzar
+    menu de navegacion responive adaptables a dispositivos moviles
+mixin navbar(id, title, template, position)
+    -var template = template ? template : 'default';
+    nav.navbar.navbar-expand-lg(class=`navbar-${template} bg-${template}`)&attributes(attributes)
+        .container
+            a.navbar-brand(href="#")!= title
+
+            button.navbar-toggler(type="button", data-toggle="collapse", data-target=`#${id}`, aria-controls="navbarSupportedContent", aria-expanded="false")
+                span.navbar-toggler-icon
+            
+            .collapse.navbar-collapse(id= id)
+                case position
+                    when 'right'
+                        -position = 'ml-auto';
+                    default
+                        -position = 'mr-auto'
+                ul.navbar-nav(class= position)
+                    block
+
+//-
+    Crea un nuevo menu de navegación vacío
+mixin custom-navbar(template)
+    nav.navbar(class=`navbar-${template} bg-${template}`)&attributes(attributes)
+        block
+
+//-
+    Método que genera un item de menu
+mixin nav-item(url, item, active)
+    if active
+        li.nav-item.active
+            a.nav-link(href= url)!= item
+                span.sr-only (Current)
+    else
+        li.nav-item
+            a.nav-link(href= url)= item
+
+//-
+    Método que genera un item de menu que puede almacenar subitems
+mixin nav-item-dropdown(id, item)
+    li.nav-item.dropdown
+        a.nav-link.dropdown-toggle(href="#", id= id, role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")= item
+        .dropdown-menu(aria-labelledby= id)
+            block
+
+//-
+    El mixin dropdown-item esta disponible en dropdown.pug
+

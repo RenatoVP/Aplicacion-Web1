@@ -1,0 +1,34 @@
+extends ../layout/_layout
+
+block listarDocente
+    include ../partials/_navigation
+    
+    h1.my-5.text-center Listado de Docentes
+
+    table.table
+        thead
+            tr
+                th(scope="col") Codigo
+                th(scope="col") Nombre
+                th(scope="col") Apellido Paterno
+                th(scope="col") Apellido Materno
+                th(scope="col") Sexo
+                th(scope="col") Numero de Hijos
+                th(scope="col") Sueldo
+                th(scope="col") Distrito
+            tbody
+                if data
+                    -for(var i = 0; i < data.length; i++)
+                        tr
+                            td #{i + 1}
+                            td #{data[i].nom_doc}
+                            td #{data[i].pat_doc}
+                            td #{data[i].mat_doc}
+                            td #{data[i].sex_doc}
+                            td #{data[i].num_hijo_doc}
+                            td #{data[i].sue_doc}
+                            td #{data[i].descripcion}
+
+
+
+    include ../partials/_footer
