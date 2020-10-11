@@ -27,7 +27,8 @@ app.use(express.urlencoded({extended: false}));
 app.use('/',require('./routes/vistas'));
 
 //Static files
-app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //Starting the server
 app.listen(app.get('port'), () => {
